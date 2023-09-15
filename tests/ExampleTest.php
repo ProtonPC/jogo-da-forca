@@ -4,12 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_PHPUNIT_works()
+    public function test_PHPUNIT_works(): void
     {
         $this->assertTrue(true);
     }
