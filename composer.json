@@ -1,0 +1,21 @@
+{
+    "name": "proton/jogo-da-forca",
+    "description": "Amazing Jogo da Forca",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^10.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Proton\\JogoDaForca\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bruno Oliveira",
+            "email": "bds.commus@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
