@@ -2,13 +2,18 @@
     "name": "proton/jogo-da-forca",
     "description": "Amazing Jogo da Forca",
     "type": "project",
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors --testdox --do-not-cache-result"
+    },
     "require": {
+    },
+    "require-dev": {
         "phpunit/phpunit": "^10.3"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Proton\\JogoDaForca\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [
