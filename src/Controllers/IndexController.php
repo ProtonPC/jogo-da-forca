@@ -6,6 +6,6 @@ class IndexController
 {
     public function index()
     {
-        return 'Hello World!';
+        var_dump("Chegou no indexController");
     }
 }
