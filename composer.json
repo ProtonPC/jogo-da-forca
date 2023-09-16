@@ -3,6 +3,7 @@
     "description": "Amazing Jogo da Forca",
     "type": "project",
     "scripts": {
+        "serve": "php -S localhost:8000 -t public",
         "test": "vendor/bin/phpunit --colors && vendor/bin/phpstan analyse src",
         "phpunit": "vendor/bin/phpunit --colors --testdox --do-not-cache-result",
         "phpstan": "vendor/bin/phpstan analyse src"
