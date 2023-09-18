@@ -2,7 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Controllers\IndexController;
+use Pecee\SimpleRouter\SimpleRouter;
 
-$controller = new IndexController();
-$controller->index();
+SimpleRouter::setDefaultNamespace('src\Controllers');
+
+require __DIR__ . '/../routes/routes.php';
+
+SimpleRouter::start();

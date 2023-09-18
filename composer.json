@@ -36,5 +36,8 @@
             "email": "juninhorpgs@gmail.com"
         }
     ],
-    "minimum-stability": "beta"
+    "minimum-stability": "beta",
+    "require": {
+        "pecee/simple-router": "5.3.0.5"
+    }
 }
