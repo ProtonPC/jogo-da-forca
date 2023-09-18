@@ -6,7 +6,7 @@
         "serve": "php -S localhost:8000 -t public",
         "test": "vendor/bin/phpunit --colors && vendor/bin/phpstan analyse src --level 5",
         "phpunit": "vendor/bin/phpunit --colors --testdox --do-not-cache-result",
-        "phpstan": "vendor/bin/phpstan analyse src"
+        "phpstan": "vendor/bin/phpstan analyse src --level 5"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.3",
@@ -24,8 +24,16 @@
     },
     "authors": [
         {
+            "name": "Alan Sales",
+            "email": "alansales00@gmail.com"
+        },
+        {
             "name": "Bruno Oliveira",
             "email": "bds.commus@gmail.com"
+        },
+        {
+            "name": "Jeová Aires",
+            "email": "juninhorpgs@gmail.com"
         }
     ],
     "minimum-stability": "beta"
