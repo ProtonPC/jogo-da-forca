@@ -38,6 +38,7 @@
     ],
     "minimum-stability": "beta",
     "require": {
-        "pecee/simple-router": "5.3.0.5"
+        "pecee/simple-router": "5.3.0.5",
+        "twig/twig": "^3.7"
     }
 }
