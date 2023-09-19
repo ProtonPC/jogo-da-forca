@@ -11,7 +11,7 @@ trait HasTemplate
 
     public function __construct()
     {
-        $loader = new FilesystemLoader(VIEWS_DIR);
+        $loader = new FilesystemLoader(__DIR__ . '/../../resources/views');
 
         $this->twig = new Environment($loader);
     }
