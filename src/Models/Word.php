@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class Word
 {
     private $name;
