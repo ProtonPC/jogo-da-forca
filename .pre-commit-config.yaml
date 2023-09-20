@@ -1,0 +1,14 @@
+repos:
+  - repo: https://github.com/digitalpulp/pre-commit-php.git
+    rev: 1.4.0
+    hooks:
+    - id: php-lint
+    - id: php-lint-all
+    - id: php-cs
+      files: \.(php)$
+      args: [--standard=PSR12 -p]
+    - id: php-cs-fixer
+      files: \.(php)$
+    - id: php-stan
+      files: \.(php)$
+    - id: php-unit
