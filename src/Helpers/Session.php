@@ -15,6 +15,7 @@ class Session
     {
         return self::has($key) ? $_SESSION[$key] : 'null';
     }
+
     public static function set(string $key, string $value): void
     {
         $_SESSION[$key] = $value;
