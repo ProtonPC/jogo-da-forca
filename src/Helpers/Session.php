@@ -13,7 +13,7 @@ class Session
 
     public static function get(string $key): string
     {
-        return self::has($key) ? $_SESSION[$key] : 'null';
+        return self::has($key) ? $_SESSION[$key] : '';
     }
 
     public static function set(string $key, string $value): void
