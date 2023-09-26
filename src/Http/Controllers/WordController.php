@@ -14,6 +14,9 @@ class WordController extends BaseController
 
     public function readAllWord()
     {
+        return $this->view('word/index.html', [
+            'user' => 'dados',
+        ]);
     }
 
     public function updateWord(int $id)
