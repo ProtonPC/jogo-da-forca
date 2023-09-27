@@ -12,4 +12,23 @@ class UserController extends BaseController
             'user' => new User('John Doe', 'admin'),
         ]);
     }
+
+    public function login()
+    {
+        return true;
+    }
+    public function createProfile(User $user)
+    {
+        return true;
+    }
+
+    public function editProfile(User $user)
+    {
+        return true;
+    }
+
+    public function deleteProfile(User $user)
+    {
+        return true;
+    }
 }
