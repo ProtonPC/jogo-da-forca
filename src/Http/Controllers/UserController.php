@@ -13,7 +13,7 @@ class UserController extends BaseController
         ]);
     }
 
-    public function loguin()
+    public function login()
     {
         return true;
     }
@@ -22,7 +22,7 @@ class UserController extends BaseController
         return true;
     }
 
-    public function editProfile(User $use)
+    public function editProfile(User $user)
     {
         return true;
     }
