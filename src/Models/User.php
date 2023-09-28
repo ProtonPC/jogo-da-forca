@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Stringable;
-
 class User
 {
-    private String $name;
-    private String $userName;
-    private String $password;
-    private String $role;
+    private string $name;
+    private string $userName;
+    private string $password;
+    private string $role;
 
     public function __construct(string $name, string $userName, string $password, string $role)
     {
@@ -19,17 +17,17 @@ class User
         $this->role = $role;
     }
 
-    public function setName(String $name):void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    public function getName(): String
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setUserName(String $userName): void
+    public function setUserName(string $userName): void
     {
         $this->userName = $userName;
     }
@@ -39,7 +37,7 @@ class User
         return $this->userName;
     }
 
-    public function setRole(String $role)
+    public function setRole(string $role)
     {
         $this->role = $role;
     }
