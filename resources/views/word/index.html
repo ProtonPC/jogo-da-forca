@@ -2,6 +2,46 @@
 
 {% block content %}
 
-Dashboard - Lista de palavras para usuário logado
+<div class="relative overflow-x-auto flex justify-center my-3">
+    <table class="w-4/5 text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-100 uppercase bg-indigo-500">
+            <tr>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">Tip</th>
+                <th scope="col" class="px-6 py-3">Level</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for word in words %}
+                <tr class="bg-white border-b text">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ word['name'] }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ word['tip'] }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ word['level'] }}
+                    </td>
+                    <td class="flex px-6 py-4">
+                        <form action="/words/edit/{{word['id']}}" method="post">
+                            <button type="submit"
+                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2">
+                                Editar
+                            </button>
+                        </form>
+                        <form action="/words/delete/{{word['id']}}" method="post">
+                            <button type="submit"
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2">
+                                Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
