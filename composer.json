@@ -54,10 +54,7 @@
         "pecee/simple-router": "5.3.0.5",
         "twig/twig": "^3.7"
     },
-
     "config": {
         "process-timeout": 0
     }
-
-
 }
