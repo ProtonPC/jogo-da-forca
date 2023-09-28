@@ -4,12 +4,46 @@ namespace App\Models;
 
 class User
 {
-    public function __construct(private string $name, private string $role)
+    private string $name;
+    private string $userName;
+    private string $password;
+    private string $role;
+
+    public function __construct(string $name, string $userName, string $password, string $role)
     {
+        $this->name = $name;
+        $this->userName = $userName;
+        $this->password = $password;
+        $this->role = $role;
     }
 
-    public function __toString()
+    public function setName(string $name): void
     {
-        return $this->name . ': ' . $this->role;
+        $this->name = $name;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setUserName(string $userName): void
+    {
+        $this->userName = $userName;
+    }
+
+    public function getUserName(): string
+    {
+        return $this->userName;
+    }
+
+    public function setRole(string $role)
+    {
+        $this->role = $role;
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
     }
 }
