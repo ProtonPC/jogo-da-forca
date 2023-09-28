@@ -2,6 +2,18 @@
 
 {% block content %}
 
+
+<div class="text-right px-32 py-2">
+    <form action="/words/create" method="post">
+        <button 
+            class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2"
+            type="submit"
+        >
+            Cadastrar Palavra
+        </button>
+    </form>
+</div>
+
 <div class="relative overflow-x-auto flex justify-center my-3">
     <table class="w-4/5 text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-100 uppercase bg-indigo-500">
