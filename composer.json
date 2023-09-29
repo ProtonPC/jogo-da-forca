@@ -4,19 +4,16 @@
     "type": "project",
     "scripts": {
         "serve": [
-            "Composer\\Config::disableProcessTimeout",
             "php -S localhost:8000 -t public"
         ],
         "test": [
-            "Composer\\Config::disableProcessTimeout",
-            "vendor/bin/phpunit --colors && vendor/bin/phpstan analyse src --level 5"
+            "vendor/bin/phpunit --colors --testdox --do-not-cache-result",
+            "vendor/bin/phpstan analyse src --level 5"
         ],
         "phpunit": [
-            "Composer\\Config::disableProcessTimeout",
             "vendor/bin/phpunit --colors --testdox --do-not-cache-result"
         ],
         "phpstan": [
-            "Composer\\Config::disableProcessTimeout",
             "vendor/bin/phpstan analyse src --level 5"
         ]
     },
