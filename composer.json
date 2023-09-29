@@ -7,7 +7,7 @@
             "php -S localhost:8000 -t public"
         ],
         "test": [
-            "vendor/bin/phpunit --colors",
+            "vendor/bin/phpunit --colors --testdox --do-not-cache-result",
             "vendor/bin/phpstan analyse src --level 5"
         ],
         "phpunit": [
