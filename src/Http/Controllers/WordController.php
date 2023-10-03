@@ -8,8 +8,17 @@ class WordController extends BaseController
     {
     }
 
-    public function readWord(int $id)
+    public function getWord(int $id)
     {
+        // pega no banco a palavra que esse $id;
+        // Retorna uma view "dashboard.html" com o objeto encontrado no banco
+    }
+
+    public function editWord(int $id)
+    {
+        echo "Chegou no médodo de editar";
+        // pega no banco a palavra que esse $id;
+        // Retorna uma view "form.html" com o objeto encontrado no banco
     }
 
     public function readAllWord()
@@ -41,6 +50,7 @@ class WordController extends BaseController
 
     public function updateWord(int $id)
     {
+        // salvar no banco de dados
     }
 
     public function deleteWord(int $id)

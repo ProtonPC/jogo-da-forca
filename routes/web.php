@@ -18,5 +18,7 @@ Router::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Router::get('/register', [AuthController::class, 'register'])->name('auth.register');
 
 Router::get('/words', [WordController::class, 'readAllWord'])->name('words.index');
+Router::get('/words/edit/{id}', [WordController::class, 'editWord'])->name('game.edit');
+Router::put('/words/edit/{id}', [WordController::class, 'updateWord'])->name('game.update');
 
 Router::get('/play', [GameController::class, 'index'])->name('game.index');
