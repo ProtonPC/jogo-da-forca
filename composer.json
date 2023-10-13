@@ -29,7 +29,9 @@
             "App\\": "src/"
         },
         "files": [
-            "src/Helpers/customHelper.php"
+            "src/Helpers/customHelper.php",
+            "config/app.php",
+            "database/Connection.php"
         ]
     },
     "authors": [

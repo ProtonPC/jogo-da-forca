@@ -1,0 +1,25 @@
+{% extends 'template/base_template.html' %}
+
+{% block content %}
+
+<p>Esta ação irá excluir todas as suas palavras cadastradas. Prosseguir ?</p>
+<div class="text-center px-32 py-2">
+    <form action="/words/deleteAll" method="post">
+        <button 
+            class="focus:outline-none text-white bg-red-700 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2"
+            type="submit"
+        >
+            Sim
+        </button>
+    </form>
+    <form action="/words" method="get">
+        <button 
+            class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2"
+            type="submit"
+        >
+            Cancelar
+        </button>
+    </form>
+</div>
+
+{% endblock %}

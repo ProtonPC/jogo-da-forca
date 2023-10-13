@@ -1,8 +1,14 @@
 <?php
 
-define('BASE_DIR', __DIR__);
-define('DB_HOST', 'localhost');
-define('DB_PORT', '3306');
-define('DB_NAME', 'testbd');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+function constants(string $key)
+{
+    $config = [
+        'BASE_DIR' => __DIR__,
+        'DB_HOST' => 'localhost',
+        'DB_PORT' => '3306',
+        'DB_NAME' => 'jogodaforcadb',
+        'DB_USER' => 'root',
+        'DB_PASSWORD' => '',
+    ];
+    return $config[$key];
+}

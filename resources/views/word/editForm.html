@@ -6,22 +6,21 @@
     <h1>Submit a new word for the game: </h1>
     
     
-    <form action="/words/create" method="post">
+    <form action="/words/edit/{{word['id']}}" method="post">
         <label for="word" >Word:</label>
-        <input type="text" id="word" name="word">
+        <input type="text" id="word" name="word" value="{{word['content']}}">
         <label for="level">Level:</label>
-        <input type="number" min="0" id="level" name="level">
+        <input type="number" min="0" id="level" name="level" value="{{word['level']}}">
         <label for="tip" >Tip:</label>
-        <input type="text" id="tip" name="tip">
+        <input type="text" id="tip" name="tip" value="{{word['tip']}}">
         
         <button 
             type="submit"
         >
-            Cadastrar Palavra
+            Editar Palavra
         </button>
     </form>
     
     
 
 {% endblock %}
-

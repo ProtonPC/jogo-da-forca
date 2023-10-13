@@ -14,9 +14,10 @@ class Connection
         if (empty(self::$instancia)) {
             try {
                 self::$instancia = new PDO(
-                    'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME,
-                    DB_USER,
-                    DB_PASSWORD
+                    'mysql:host=' .
+                    constants('DB_HOST') . ';port=' . constants('DB_PORT') . ';dbname=' . constants('DB_NAME'),
+                    constants('DB_USER'),
+                    constants('DB_PASSWORD')
                 );
             } catch (PDOException $ex) {
                 die("Erro na conexão: " . $ex->getMessage());
