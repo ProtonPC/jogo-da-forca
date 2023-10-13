@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-class Word
+use App\Contracts\BaseModel;
+
+class Word implements BaseModel
 {
+    private int $id;
     private string $name;
     private int $level;
     private string $tip;
@@ -43,5 +46,10 @@ class Word
     public function setTip(string $tip)
     {
         $this->tip = $tip;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

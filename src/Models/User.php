@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-class User
+use App\Contracts\BaseModel;
+
+class User implements BaseModel
 {
+    private int $id;
     private string $name;
     private string $userName;
     private string $password;
@@ -45,5 +48,10 @@ class User
     public function getRole(): string
     {
         return $this->role;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

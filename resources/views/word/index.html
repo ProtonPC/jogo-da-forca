@@ -4,12 +4,21 @@
 
 
 <div class="text-right px-32 py-2">
-    <form action="/words/create" method="post">
+    <form action="/words/create" method="get">
         <button 
             class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2"
             type="submit"
         >
             Cadastrar Palavra
+        </button>
+    </form>
+    <form action="/words/deleteAll" method="get">
+        <button 
+            class="focus:outline-none text-white bg-red-700 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2"
+            type="submit"
+            id="deleteAll"
+        >
+            Deletar tudo
         </button>
     </form>
 </div>
@@ -28,7 +37,7 @@
             {% for word in words %}
                 <tr class="bg-white border-b text">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{ word['name'] }}
+                        {{ word['content'] }}
                     </th>
                     <td class="px-6 py-4">
                         {{ word['tip'] }}
@@ -37,7 +46,7 @@
                         {{ word['level'] }}
                     </td>
                     <td class="flex px-6 py-4">
-                        <form action="/words/edit/{{word['id']}}" method="post">
+                        <form action="/words/edit/{{word['id']}}" method="get">
                             <button type="submit"
                                 class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2">
                                 Editar
