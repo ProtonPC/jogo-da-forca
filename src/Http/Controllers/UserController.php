@@ -24,8 +24,10 @@ class UserController extends BaseController
 
     public function getEditUser(int $id)
     {
-        return $this->view('user/editform.html', [
 
+        $user = UserRepository::find($id);
+        return $this->view('user/editform.html', [
+            'user' => $user
         ]);
     }
 }
