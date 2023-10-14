@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use Exception;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Lexer;
