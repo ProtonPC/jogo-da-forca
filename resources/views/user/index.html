@@ -1,0 +1,59 @@
+{% extends 'template/base_template.html' %}
+
+{% block content %}
+
+
+<div class="text-right px-32 py-2">
+    <form action="/user/create" method="post">
+        <button 
+            class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2"
+            type="submit"
+        >
+            Cadastrar usuário
+        </button>
+    </form>
+</div>
+
+<div class="relative overflow-x-auto flex justify-center my-3">
+    <table class="w-4/5 text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-100 uppercase bg-indigo-500">
+            <tr>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">UserName</th>
+                <th scope="col" class="px-6 py-3">Role</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user %}
+                <tr class="bg-white border-b text">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ user['name'] }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user['userName'] }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ user['Role'] }}
+                    </td>
+                    <td class="flex px-6 py-4">
+                        <form action="/users/edit/{{user['id']}}" method="post">
+                            <button type="submit"
+                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2">
+                                Editar
+                            </button>
+                        </form>
+                        <form action="/user/delete/{{user['id']}}" method="post">
+                            <button type="submit"
+                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-4 py-2 mr-2 mb-2">
+                                Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

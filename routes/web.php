@@ -12,10 +12,18 @@ Router::get('/', [IndexController::class, 'index'])->name('index');
 
 Router::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
-Router::get('/users/edit', [UserController::class, 'edit'])->name('user.edit');
+
+
+
+Router::post('/users/edit/{id}', [UserController::class, 'editProfile'])->name('user.edit');
+Router::get('/user/create/{id}', [UserController::class, 'getEditProfile'])->name('user.getEdit');
+
 
 Router::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Router::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Router::get('/register', [AuthController::class, 'getRegister'])->name('auth.getRegister');
+Router::post('/register', [AuthController::class, 'register'])->name('auth.register');
+
+
 
 Router::get('/words/create', [WordController::class, 'createWord'])->name('word.form');
 Router::post('/words/create', [WordController::class, 'createWord'])->name('words.form');
