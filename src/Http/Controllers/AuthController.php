@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Helpers\Session;
 use App\Models\User;
 use App\Repository\UserRepository;
-use PDO;
 
 class AuthController extends BaseController
 {
@@ -16,7 +15,7 @@ class AuthController extends BaseController
             $password = $_POST['password'];
             if (UserRepository::authenticateUser($userName, $password)) {
                 Session::set('userName', $userName);
-                header('Location: dashboard/index.html');
+                header('Location: user/dashboard.html');
             }
         }
         return $this->view('auth/login.html', []);
@@ -28,17 +27,16 @@ class AuthController extends BaseController
             $name = $_POST['name'];
             $userName = $_POST['userName'];
             $password = $_POST['password'];
-            $role = $_POST['role'];
         }
         $user = new User($name, $password);
         $user->setUserName($userName);
-        $user->setRole($role);
         UserRepository::create($user);
+        header('Location: user/dashboard.html');
     }
 
     public function getRegister()
     {
-        return $this->view('user/form.html', []);
+        return $this->view('auth/register.html', []);
     }
     public function logout()
     {

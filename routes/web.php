@@ -15,8 +15,8 @@ Router::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
 
 
-Router::post('/users/edit/{id}', [UserController::class, 'editProfile'])->name('user.edit');
-Router::get('/user/create/{id}', [UserController::class, 'getEditProfile'])->name('user.getEdit');
+Router::post('/user/edit/{id}', [UserController::class, 'editUser'])->name('user.edit');
+Router::get('/user/edit/{id}', [UserController::class, 'getEditUser'])->name('user.getEdit');
 
 
 Router::get('/login', [AuthController::class, 'login'])->name('auth.login');

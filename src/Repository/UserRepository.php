@@ -26,7 +26,6 @@ class UserRepository implements BaseRepository
             }
             $user = new user($userData['id'], $userData['name'], $userData['password']);
             $user->setName($userData['userName']);
-            $user->setRole($userData['role']);
             return $user;
         } catch (PDOException $e) {
             throw new Exception("Erro ao recuperar usuário por ID: " . $e->getMessage());
@@ -44,7 +43,6 @@ class UserRepository implements BaseRepository
             while ($userData = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $user = new user($userData['id'], $userData['name'], $userData['password']);
                 $user->setName($userData['userName']);
-                $user->setRole($userData['role']);
                 $users = $user;
             }
             return $users;
@@ -57,9 +55,9 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "INSERT INTO user (name, userName, password, role) VALUES (?, ?, ?, ?)";
+            $query = "INSERT INTO user (name, userName, password, role) VALUES (?, ?, ?)";
             $stmt = $db->prepare($query);
-            $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword(), $user->getRole()]);
+            $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword()]);
         } catch (PDOException $e) {
             throw new Exception("Erro ao salvar usuário: " . $e->getMessage());
         }
@@ -69,10 +67,10 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "UPDATE user SET name = ?, userName = ?, password = ?, role = ? WHERE id = :id";
+            $query = "UPDATE user SET name = ?, userName = ?, password = ? WHERE id = :id";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword(), $user->getRole()]);
+            $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword()]);
             if ($stmt->rowCount() > 0) {
                 return true;
             }

@@ -10,7 +10,6 @@ class User implements BaseModel
     private string $name;
     private string $userName;
     private string $password;
-    private string $role;
 
     public function __construct(string $name, string $password)
     {
@@ -36,16 +35,6 @@ class User implements BaseModel
     public function getUserName(): string
     {
         return $this->userName;
-    }
-
-    public function setRole(string $role)
-    {
-        $this->role = $role;
-    }
-
-    public function getRole(): string
-    {
-        return $this->role;
     }
 
     public function getId(): int
