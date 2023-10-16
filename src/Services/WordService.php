@@ -11,7 +11,6 @@ class WordService
     {
         if (!Session::has('current_word_id')) {
             $words = WordRepository::getAll();
-            #dd($words);
             if(!count($words)) {
                 echo "No words to play with!";
                 die();

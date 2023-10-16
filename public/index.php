@@ -16,7 +16,7 @@ $currentDirectory = getcwd();
 $parentDirectory = dirname($currentDirectory);
 
 $dotenv = Dotenv::createImmutable($parentDirectory);
-$dotenv->load();
+$dotenv->safeLoad();
 
 SimpleRouter::setDefaultNamespace('src\Http\Controllers');
 
