@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\FinishGameException;
 use App\Helpers\Session;
 use App\Services\GameService;
 use App\Services\WordService;
@@ -14,6 +15,7 @@ class GameController extends BaseController
 
         return $this->view('game/index.html', [
             'word' => $word,
+            'tries' => Session::get('tries'),
         ]);
     }
 
@@ -21,9 +23,17 @@ class GameController extends BaseController
     {
         GameService::makePlay($letter);
         $word = WordService::getCurrentWord();
+        try {
+            GameService::handleWinner();
+        } catch (FinishGameException $e) {
+            return $this->view('game/endgame.html', [
+                'message' => $e->getMessage(),
+            ]);
+        }
 
         return $this->view('game/index.html', [
             'word' => $word,
+            'tries' => Session::get('tries'),
         ]);
     }
 

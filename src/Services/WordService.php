@@ -21,6 +21,7 @@ class WordService
             Session::set('current_word_level', $current_word['level']);
             Session::set('current_word_tip', $current_word['tip']);
             Session::set('current_word_length', count(self::encodeToArray($current_word['content'])));
+            Session::set('tries', 5);
         }
     }
 

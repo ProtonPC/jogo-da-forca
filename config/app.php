@@ -8,7 +8,7 @@ if (!function_exists('constants')) {
             'DB_DATABASE' => $_ENV['DB_DATABASE'] ?? 'mysql',
             'DB_HOST' => $_ENV['DB_HOST'] ?? 'localhost',
             'DB_PORT' => $_ENV['DB_PORT'] ?? '3306',
-            'DB_NAME' => $_ENV['DB_NAME'] ?? 'jogo_da_forca',
+            'DB_NAME' => $_ENV['DB_NAME'] ?? 'jogodaforcadb',
             'DB_USER' => $_ENV['DB_USER'] ?? 'root',
             'DB_PASSWORD' => $_ENV['DB_PASSWORD'] ?? '',
         ];
