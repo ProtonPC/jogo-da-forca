@@ -1,8 +1,7 @@
 <?php
 
-namespace App\database;
+namespace Database;
 
-// Use desnecessário pois o PDO é uma classe que faz parte do núcleo do PHP
 use PDO;
 use PDOException;
 
@@ -35,7 +34,4 @@ class Connection
     protected function clone(): void
     {
     }
-
-    //instanciamento da conexão.
-    //$con = Connection::getInstancia();
 }

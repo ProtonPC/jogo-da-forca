@@ -3,32 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repository\UserRepository;
 
 class UserController extends BaseController
 {
-    public function index()
+    public function editUser(int $id)
     {
-        return $this->view('user/user.html', [
-            'user' => 'user name',
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $_POST['name'];
+            $userName = $_POST['username'];
+            $user = new User($name, $userName);
+            UserRepository::update($id, $user);
+            header('Location: /dashboard');
+        }
+        $user = UserRepository::find($id);
+        return $this->view('user/form.html', [
+            'user' => $user,
+            'id' => $id
         ]);
-    }
-
-    public function login()
-    {
-        return true;
-    }
-    public function createProfile(User $user)
-    {
-        return true;
-    }
-
-    public function editProfile(User $user)
-    {
-        return true;
-    }
-
-    public function deleteProfile(User $user)
-    {
-        return true;
     }
 }

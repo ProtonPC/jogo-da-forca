@@ -8,6 +8,12 @@ if (!session_id()) {
 }
 
 use Pecee\SimpleRouter\SimpleRouter;
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
+print(getenv('ABC'));
 
 SimpleRouter::setDefaultNamespace('src\Http\Controllers');
 
