@@ -11,20 +11,15 @@ class UserController extends BaseController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
-            $userName = $_POST['userName'];
-            $password = $_POST['password'];
+            $userName = $_POST['username'];
+            $user = new User($name, $userName);
+            UserRepository::update($id, $user);
+            header('Location: /dashboard');
         }
-        $user = new User($name, $password);
-        $user->setUserName($userName);
-        UserRepository::update($id, $user);
-        header('Location: /dashboard');
-    }
-
-    public function getEditUser(int $id)
-    {
         $user = UserRepository::find($id);
         return $this->view('user/form.html', [
-            'user' => $user
+            'user' => $user,
+            'id' => $id
         ]);
     }
 }

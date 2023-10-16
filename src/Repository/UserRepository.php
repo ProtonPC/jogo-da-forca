@@ -4,8 +4,9 @@ namespace App\Repository;
 
 use App\Contracts\BaseModel;
 use App\Contracts\BaseRepository;
-use App\database\Connection;
+use App\Helpers\Session;
 use App\Models\User;
+use Database\Connection;
 use Exception;
 use PDO;
 use PDOException;
@@ -24,9 +25,7 @@ class UserRepository implements BaseRepository
             if (!$userData) {
                 return null;
             }
-            $user = new user($userData['id'], $userData['name'], $userData['password']);
-            $user->setName($userData['userName']);
-            return $user;
+            return $userData;
         } catch (PDOException $e) {
             throw new Exception("Erro ao recuperar usuário por ID: " . $e->getMessage());
         }
@@ -55,7 +54,7 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "INSERT INTO user (name, userName, password, role) VALUES (?, ?, ?)";
+            $query = "INSERT INTO user (name, userName, password) VALUES (?, ?, ?)";
             $stmt = $db->prepare($query);
             $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword()]);
         } catch (PDOException $e) {
@@ -67,11 +66,11 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "UPDATE user SET name = ?, userName = ?, password = ? WHERE id = :id";
+            $query = "UPDATE user SET name = ?, userName = ? WHERE id = ?";
             $stmt = $db->prepare($query);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword()]);
+            $stmt->execute([$user->getName(), $user->getUserName(), $id]);
             if ($stmt->rowCount() > 0) {
+                Session::set('userName', $user->getUserName());
                 return true;
             }
             return false;
@@ -100,11 +99,11 @@ class UserRepository implements BaseRepository
     public static function authenticateUser($userName, $password)
     {
         $db = Connection::getInstancia();
-        $stmt = $db->prepare("SELECT * FROM users WHERE username = :userName AND password = :password");
+        $stmt = $db->prepare("SELECT id FROM user WHERE username = :userName AND password = :password");
         $stmt->bindParam(':userName', $userName);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return ($result !== false);
+        return $result['id'];
     }
 }

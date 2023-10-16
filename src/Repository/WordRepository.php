@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Contracts\BaseModel;
 use App\Contracts\BaseRepository;
-use App\database\Connection;
+use Database\Connection;
 use PDO;
 
 class WordRepository implements BaseRepository

@@ -11,11 +11,13 @@ class AuthController extends BaseController
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userName = $_POST['useName'];
+            $userName = $_POST['username'];
             $password = $_POST['password'];
-            if (UserRepository::authenticateUser($userName, $password)) {
+            $userId = UserRepository::authenticateUser($userName, $password);
+            if (!is_null($userId)) {
+                Session::set('userId', $userId);
                 Session::set('userName', $userName);
-                header('Location: user/dashboard.html');
+                header('Location: /dashboard');
             }
         }
         return $this->view('auth/login.html', []);
@@ -25,22 +27,27 @@ class AuthController extends BaseController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
-            $userName = $_POST['userName'];
+            $userName = $_POST['username'];
             $password = $_POST['password'];
+            $user = new User($name, $userName, $password);
+            UserRepository::create($user);
+            header('Location: /login');
         }
-        $user = new User($name, $password);
-        $user->setUserName($userName);
-        UserRepository::create($user);
-        header('Location: user/dashboard.html');
-    }
-
-    public function getRegister()
-    {
         return $this->view('auth/register.html', []);
     }
     public function logout()
     {
         session_destroy();
-        header('Location: login.php');
+        header('Location: /');
+    }
+
+    public function getDashboard()
+    {
+        $userName = Session::get('userName');
+        $userId = Session::get('userId');
+        return $this->view('user/dashboard.html', [
+           'userName' => $userName,
+           'userId' => $userId
+        ]);
     }
 }

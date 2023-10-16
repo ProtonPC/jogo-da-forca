@@ -10,18 +10,18 @@ use Pecee\SimpleRouter\SimpleRouter as Router;
 
 Router::get('/', [IndexController::class, 'index'])->name('index');
 
-Router::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+//Router::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Router::get('/dashboard', [AuthController::class, 'getDashboard'])->name('dashboard');
 
 
+Router::match(['get', 'post'], '/user/edit/{id}', [UserController::class, 'editUser'])->name('user.edit');
 
+Router::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('auth.login');
 
-Router::post('/user/edit/{id}', [UserController::class, 'editUser'])->name('user.edit');
-Router::get('/user/edit/{id}', [UserController::class, 'getEditUser'])->name('user.getEdit');
+Router::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('auth.register');
 
-
-Router::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Router::get('/register', [AuthController::class, 'getRegister'])->name('auth.getRegister');
-Router::post('/register', [AuthController::class, 'register'])->name('auth.register');
+Router::get('/logout', [AuthController::class, 'logout'])->name('auth.delete');
 
 
 

@@ -26,12 +26,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Database\\": "database/"
         },
         "files": [
             "src/Helpers/customHelper.php",
-            "config/app.php",
-            "database/Connection.php"
+            "config/app.php"
         ]
     },
     "authors": [

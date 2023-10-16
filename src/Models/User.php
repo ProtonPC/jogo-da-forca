@@ -11,9 +11,10 @@ class User implements BaseModel
     private string $userName;
     private string $password;
 
-    public function __construct(string $name, string $password)
+    public function __construct(string $name, string $userName, string $password = "")
     {
         $this->name = $name;
+        $this->userName = $userName;
         $this->password = $password;
     }
 

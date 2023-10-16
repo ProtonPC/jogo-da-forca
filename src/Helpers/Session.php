@@ -4,20 +4,21 @@ namespace App\Helpers;
 
 class Session
 {
-    public function __construct()
+    public static function init()
     {
         if (!session_id()) {
             session_start();
         }
     }
-
     public static function get(string $key): string
     {
+        Session::init();
         return self::has($key) ? $_SESSION[$key] : '';
     }
 
     public static function set(string $key, string $value): void
     {
+        Session::init();
         $_SESSION[$key] = $value;
     }
 
