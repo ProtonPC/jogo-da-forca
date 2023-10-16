@@ -21,8 +21,8 @@ class Connection
             } catch (PDOException $ex) {
                 die("Erro na conexão: " . $ex->getMessage());
             }
-            return self::$instancia;
         }
+        return self::$instancia;
     }
 
     // Instrução para seguir o padrão de projeto singleton para existir apenas uma instancia da conexão

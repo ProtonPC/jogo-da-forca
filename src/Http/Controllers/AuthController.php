@@ -37,7 +37,7 @@ class AuthController extends BaseController
     }
     public function logout()
     {
-        session_destroy();
+        Session::destroy();
         header('Location: /');
     }
 
@@ -45,6 +45,7 @@ class AuthController extends BaseController
     {
         $userName = Session::get('userName');
         $userId = Session::get('userId');
+
         return $this->view('user/dashboard.html', [
            'userName' => $userName,
            'userId' => $userId

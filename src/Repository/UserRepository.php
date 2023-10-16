@@ -17,7 +17,7 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "SELECT * FROM user WHERE id = :id";
+            $query = "SELECT * FROM users WHERE id = :id";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -35,7 +35,7 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "SELECT * FROM user";
+            $query = "SELECT * FROM users";
             $stmt = $db->query($query);
             $stmt->execute();
             $users = array();
@@ -54,7 +54,7 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "INSERT INTO user (name, userName, password) VALUES (?, ?, ?)";
+            $query = "INSERT INTO users (name, userName, password) VALUES (?, ?, ?)";
             $stmt = $db->prepare($query);
             $stmt->execute([$user->getName(), $user->getUserName(), $user->getPassword()]);
         } catch (PDOException $e) {
@@ -66,7 +66,7 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "UPDATE user SET name = ?, userName = ? WHERE id = ?";
+            $query = "UPDATE users SET name = ?, userName = ? WHERE id = ?";
             $stmt = $db->prepare($query);
             $stmt->execute([$user->getName(), $user->getUserName(), $id]);
             if ($stmt->rowCount() > 0) {
@@ -83,7 +83,7 @@ class UserRepository implements BaseRepository
     {
         try {
             $db = Connection::getInstancia();
-            $query = "DELETE FROM user WHERE id = :id";
+            $query = "DELETE FROM users WHERE id = :id";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -99,7 +99,7 @@ class UserRepository implements BaseRepository
     public static function authenticateUser($userName, $password)
     {
         $db = Connection::getInstancia();
-        $stmt = $db->prepare("SELECT id FROM user WHERE username = :userName AND password = :password");
+        $stmt = $db->prepare("SELECT id FROM users WHERE username = :userName AND password = :password");
         $stmt->bindParam(':userName', $userName);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
