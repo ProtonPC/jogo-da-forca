@@ -4,13 +4,6 @@ namespace App\Helpers;
 
 class Session
 {
-    public function __construct()
-    {
-        if (!session_id()) {
-            session_start();
-        }
-    }
-
     public static function get(string $key): string
     {
         return self::has($key) ? $_SESSION[$key] : '';

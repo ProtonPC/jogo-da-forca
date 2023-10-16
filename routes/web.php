@@ -28,3 +28,5 @@ Router::get('/words/deleteAll', [WordController::class, 'deleteAllWord'])->name(
 Router::post('/words/deleteAll', [WordController::class, 'deleteAllWord'])->name('words.index');
 
 Router::get('/play', [GameController::class, 'index'])->name('game.index');
+Router::get('/play/{letter}', [GameController::class, 'play'])->name('game.letter');
+Router::get('/reset-game', [GameController::class, 'resetGame'])->name('game.reset');
