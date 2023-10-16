@@ -13,7 +13,7 @@ class Connection
         if (empty(self::$instancia)) {
             try {
                 self::$instancia = new PDO(
-                    'mysql:host=' .
+                    constants('DB_DATABASE') . ':host=' .
                     constants('DB_HOST') . ';port=' . constants('DB_PORT') . ';dbname=' . constants('DB_NAME'),
                     constants('DB_USER'),
                     constants('DB_PASSWORD')

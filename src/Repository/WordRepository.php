@@ -11,7 +11,7 @@ class WordRepository implements BaseRepository
 {
     public static function find(int $id)
     {
-        $query = "SELECT * FROM `words` WHERE id = ($id)";
+        $query = "SELECT * FROM words WHERE id = $id";
         $con = Connection::getInstancia()->query($query);
         $result = $con->fetchAll();
         return $result;
@@ -19,7 +19,7 @@ class WordRepository implements BaseRepository
 
     public static function getAll()
     {
-        $query = "SELECT * FROM `words`";
+        $query = "SELECT * FROM words";
         $con = Connection::getInstancia()->query($query);
         $result = $con->fetchAll();
         return $result;
@@ -27,7 +27,7 @@ class WordRepository implements BaseRepository
 
     public static function create(BaseModel $word)
     {
-        $query = "INSERT INTO words (`content`, `level`, `tip`) VALUES (?,?,?)";
+        $query = "INSERT INTO words (content, level, tip) VALUES (?,?,?)";
         $con = Connection::getInstancia()->prepare($query);
         $con->execute([$word->getName(), $word->getLevel(), $word->getTip()]);
     }
@@ -49,7 +49,7 @@ class WordRepository implements BaseRepository
     }
     public static function update(int $id, BaseModel $word)
     {
-        $query = "UPDATE words 
+        $query = "UPDATE words
                 SET content = '{$word->getName()}', level = '{$word->getLevel()}', tip = '{$word->getTip()}'
                 WHERE id = $id";
         $con = Connection::getInstancia()->prepare($query);
@@ -58,7 +58,7 @@ class WordRepository implements BaseRepository
 
     public static function delete(int $id)
     {
-        $query = "DELETE FROM words WHERE `id` = ($id)";
+        $query = "DELETE FROM words WHERE id = $id";
         $con = Connection::getInstancia()->query($query);
         $con->execute();
     }

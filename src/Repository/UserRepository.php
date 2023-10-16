@@ -99,10 +99,8 @@ class UserRepository implements BaseRepository
     public static function authenticateUser($userName, $password)
     {
         $db = Connection::getInstancia();
-        $stmt = $db->prepare("SELECT id FROM users WHERE username = :userName AND password = :password");
-        $stmt->bindParam(':userName', $userName);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
+        $stmt = $db->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
+        $stmt->execute([$userName, md5($password)]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['id'];
     }

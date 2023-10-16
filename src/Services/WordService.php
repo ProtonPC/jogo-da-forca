@@ -10,7 +10,12 @@ class WordService
     public static function setCurrentWord(): void
     {
         if (!Session::has('current_word_id')) {
-            $current_word = WordRepository::getAll()[rand(0, count(WordRepository::getAll()) - 1)];
+            $words = WordRepository::getAll();
+            if(!count($words)) {
+                echo "No words to play with!";
+                die();
+            }
+            $current_word = $words[rand(0, count($words) - 1)];
             Session::set('current_word_id', $current_word['id']);
             Session::set('current_word_content', $current_word['content']);
             Session::set('current_word_level', $current_word['level']);
