@@ -10,10 +10,13 @@ if (!session_id()) {
 use Pecee\SimpleRouter\SimpleRouter;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad();
+// Get the current directory
+$currentDirectory = getcwd();
+// Get the parent directory
+$parentDirectory = dirname($currentDirectory);
 
-print(getenv('ABC'));
+$dotenv = Dotenv::createImmutable($parentDirectory);
+$dotenv->load();
 
 SimpleRouter::setDefaultNamespace('src\Http\Controllers');
 
