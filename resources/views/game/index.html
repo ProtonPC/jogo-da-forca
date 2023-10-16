@@ -8,9 +8,8 @@
                 Boneco
             </div>
             <div class="">
-                {{ word['encoded'] }} <br>
                 {% for i in 0..word['length']-1 %}
-                    {{ word['letters'][i] }}
+                    {{ word['encoded'][i] }}
                 {% endfor %}
             </div>
         </div>

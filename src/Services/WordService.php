@@ -23,14 +23,21 @@ class WordService
     {
         self::setCurrentWord();
 
+        if (!Session::has('current_word_encoded')) {
+            Session::set(
+                'current_word_encoded',
+                implode(self::encodeToArray(Session::get('current_word_content')))
+            );
+        }
+
         return [
             'id' => Session::get('current_word_id'),
             'content' => Session::get('current_word_content'),
             'level' => Session::get('current_word_level'),
             'tip' => Session::get('current_word_tip'),
             'length' => Session::get('current_word_length'),
-            'letters' => self::encodeToArray(Session::get('current_word_content')),
-            'encoded' => Session::get('current_word_encoded'),
+            'letters' => str_split(Session::get('current_word_content'), 1),
+            'encoded' => str_split(Session::get('current_word_encoded'), 1),
         ];
     }
 
