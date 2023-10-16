@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Middlewares;
+namespace App\Http\Middlewares;
 
 use App\Helpers\Session;
 use Pecee\Http\Middleware\IMiddleware;

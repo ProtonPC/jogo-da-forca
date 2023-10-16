@@ -5,7 +5,9 @@
  */
 function dd($param)
 {
+    echo "<pre>";
     var_dump($param);
+    echo "</pre>";
     die();
 }
 
@@ -14,7 +16,9 @@ function dd($param)
  */
 function dump($param)
 {
+    echo "<pre>";
     var_dump($param);
+    echo "</pre>";
 }
 
 /**

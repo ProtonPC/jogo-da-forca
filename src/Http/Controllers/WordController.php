@@ -9,18 +9,16 @@ class WordController extends BaseController
 {
     public function createWord()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return $this->view('word/form.html', []);
-        } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newWord = new Word($_POST["word"], $_POST["level"], $_POST["tip"]);
             $validWord = (new WordRepository())->ValidateWord($newWord);
-            if ($validWord) {
-                (new WordRepository())->create($newWord);
-                header('Location: /words');
+            if (!$validWord) {
+                die("não pode");
             }
-            echo "não pode";
-            //header('Location: /words');
+            (new WordRepository())->create($newWord);
+            header('Location: /words');
         }
+        return $this->view('word/form.html', []);
     }
 
     public function getWord(int $id)
@@ -30,11 +28,7 @@ class WordController extends BaseController
         return $this->view('word/wordFound.html', ['words' => $words]);
     }
 
-    public function editWord(int $id)
-    {
-        $word = (new WordRepository())->find($id);
-        return $this->view('word/editForm.html', ['word' => $word]);
-    }
+
 
     public function readAllWord()
     {
@@ -46,9 +40,13 @@ class WordController extends BaseController
 
     public function updateWord(int $id)
     {
-        $editWord = new Word($_REQUEST["word"], $_REQUEST["level"], $_REQUEST["tip"]);
-        (new WordRepository())->update($id, $editWord);
-        header('Location: /words');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $editWord = new Word($_REQUEST["word"], $_REQUEST["level"], $_REQUEST["tip"]);
+            (new WordRepository())->update($id, $editWord);
+            header('Location: /words');
+        }
+        $word = (new WordRepository())->find($id);
+        return $this->view('word/editForm.html', ['word' => $word]);
     }
 
     public function deleteWord(int $id)
@@ -59,11 +57,10 @@ class WordController extends BaseController
 
     public function deleteAllWord()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return $this->view('word/deleteAll.html', []);
-        } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             (new WordRepository())->deleteAll();
             header('Location: /words');
         }
+        return $this->view('word/deleteAll.html', []);
     }
 }
