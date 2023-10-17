@@ -41,7 +41,7 @@ class GameService
         }
     }
 
-    private static function setupEndGame($final_image): void
+    private static function setupEndGame(string $final_image): void
     {
         Session::set('final_image', $final_image);
         WordService::unsetCurrentWord();
