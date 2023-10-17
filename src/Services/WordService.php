@@ -11,7 +11,7 @@ class WordService
     {
         if (!Session::has('current_word_id')) {
             $words = WordRepository::getAll();
-            if(!count($words)) {
+            if (!count($words)) {
                 echo "No words to play with!";
                 die();
             }
@@ -21,8 +21,10 @@ class WordService
             Session::set('current_word_level', $current_word['level']);
             Session::set('current_word_tip', $current_word['tip']);
             Session::set('current_word_length', count(self::encodeToArray($current_word['content'])));
-            Session::set('tries', 5);
+            Session::set('tries', 6);
+            Session::set('is_engame', false);
         }
+        Session::set('current_img', Session::get('tries'));
     }
 
     public static function getCurrentWord(): array
@@ -44,6 +46,7 @@ class WordService
             'length' => Session::get('current_word_length'),
             'letters' => str_split(Session::get('current_word_content'), 1),
             'encoded' => str_split(Session::get('current_word_encoded'), 1),
+            'img' => Session::get('current_img') . '.jpg',
         ];
     }
 
@@ -71,6 +74,9 @@ class WordService
         Session::unset('current_word_tip');
         Session::unset('current_word_length');
         Session::unset('current_word_encoded');
+        Session::unset('img');
+        Session::unset('final_image');
+        Session::unset('is_engame');
     }
 
     private static function unsetArrayWord(): void

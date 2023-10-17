@@ -22,19 +22,15 @@ class GameController extends BaseController
     public function play($letter)
     {
         GameService::makePlay($letter);
-        $word = WordService::getCurrentWord();
         try {
             GameService::handleWinner();
         } catch (FinishGameException $e) {
             return $this->view('game/endgame.html', [
                 'message' => $e->getMessage(),
+                'final_image' => Session::get('final_image'),
             ]);
         }
-
-        return $this->view('game/index.html', [
-            'word' => $word,
-            'tries' => Session::get('tries'),
-        ]);
+        header('Location: /play');
     }
 
     public function resetGame()

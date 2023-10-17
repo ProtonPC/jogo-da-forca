@@ -4,7 +4,7 @@ if (!function_exists('constants')) {
     function constants(string $key)
     {
         $config = [
-            'BASE_DIR' => __DIR__,
+            'BASE_DIR' => dirname(__FILE__) . '\\..',
             'DB_DATABASE' => $_ENV['DB_DATABASE'] ?? 'mysql',
             'DB_HOST' => $_ENV['DB_HOST'] ?? 'localhost',
             'DB_PORT' => $_ENV['DB_PORT'] ?? '3306',
