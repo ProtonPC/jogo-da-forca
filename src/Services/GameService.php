@@ -31,13 +31,20 @@ class GameService
     public static function handleWinner(): void
     {
         if (self::isWin()) {
-            Session::set('winner', true);
-            WordService::unsetCurrentWord();
+            self::setupEndGame(Session::get('current_img') . '.jpg');
             throw new FinishGameException("You Win");
         }
 
         if (intval(Session::get('tries')) <= 0 && !self::isWin()) {
+            self::setupEndGame('win.png');
             throw new FinishGameException("Game Over");
         }
+    }
+
+    private static function setupEndGame(string $final_image): void
+    {
+        Session::set('final_image', $final_image);
+        WordService::unsetCurrentWord();
+        Session::set('is_endgame', true);
     }
 }
